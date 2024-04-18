@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const JobListing = ({ job }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  let description = job.description;
+  let description = job?.description;
 
   if (!showFullDescription) {
     description = description.substring(0, 90) + '...';
@@ -16,8 +16,8 @@ const JobListing = ({ job }) => {
     <div className='bg-white rounded-xl shadow-md relative'>
       <div className='p-4'>
         <div className='mb-6'>
-          <div className='text-gray-600 my-2'>{job.type}</div>
-          <h3 className='text-xl font-bold'>{job.title}</h3>
+          <div className='text-gray-600 my-2'>{job?.type}</div>
+          <h3 className='text-xl font-bold'>{job?.title}</h3>
         </div>
 
         <div className='mb-5'>{description}</div>
@@ -29,17 +29,17 @@ const JobListing = ({ job }) => {
           {showFullDescription ? 'Less' : 'More'}
         </button>
 
-        <h3 className='text-blue-600 mb-2'>{job.salary}</h3>
+        <h3 className='text-blue-600 mb-2'>{job?.salary}</h3>
 
         <div className='border border-gray-100 mb-5'></div>
 
         <div className='flex flex-col lg:flex-row justify-between mb-4'>
           <div className='text-orange-700 mb-3'>
             <FaMapMarker className='inline text-lg mb-1 mr-1' />
-            {job.location}
+            {job?.location}
           </div>
           <Link
-            to={`/jobs/${job.id}`}
+            to={`/jobs/${job._id}`}
             className='bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-5 w-500 focus:outline-none focus:shadow-outline'
           >
             Know More

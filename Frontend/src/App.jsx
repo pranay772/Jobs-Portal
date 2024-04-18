@@ -15,7 +15,7 @@ import EditJobPage from './pages/EditJobPage';
 const App = () => {
   
   const addJob = async (newJob) => {
-    await fetch('/api/jobs', {
+    await fetch('/server/jobs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,14 +26,14 @@ const App = () => {
   };
 
   const deleteJob = async (id) => {
-    await fetch(`/api/jobs/${id}`, {
+    await fetch(`/server/jobs/${id}`, {
       method: 'DELETE',
     });
     return;
   };
 
   const updateJob = async (job) => {
-    await fetch(`/api/jobs/${job.id}`, {
+    await fetch(`/server/jobs/${job?.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

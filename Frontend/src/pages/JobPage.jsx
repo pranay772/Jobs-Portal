@@ -40,11 +40,11 @@ const JobPage = ({ deleteJob }) => {
           <div className='grid grid-cols-1 md:grid-cols-70/30 w-full gap-6'>
             <main>
               <div className='bg-white p-6 rounded-lg shadow-md text-center md:text-left'>
-                <div className='text-gray-500 mb-4'>{job.type}</div>
-                <h1 className='text-3xl font-bold mb-4'>{job.title}</h1>
+                <div className='text-gray-500 mb-4'>{job?.type}</div>
+                <h1 className='text-3xl font-bold mb-4'>{job?.title}</h1>
                 <div className='text-gray-500 mb-4 flex align-middle justify-center md:justify-start'>
                   <FaMapMarker className='text-orange-700 mr-1' />
-                  <p className='text-orange-700'>{job.location}</p>
+                  <p className='text-orange-700'>{job?.location}</p>
                 </div>
               </div>
 
@@ -53,13 +53,13 @@ const JobPage = ({ deleteJob }) => {
                   Job Description
                 </h3>
 
-                <p className='mb-4'>{job.description}</p>
+                <p className='mb-4'>{job?.description}</p>
 
                 <h3 className='text-blue-600 text-lg font-bold mb-2'>
                   Salary
                 </h3>
 
-                <p className='mb-4'>{job.salary}</p>
+                <p className='mb-4'>{job?.salary}</p>
               </div>
             </main>
 
@@ -68,36 +68,36 @@ const JobPage = ({ deleteJob }) => {
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <h3 className='text-xl font-bold mb-6'>Company Info</h3>
 
-                <h2 className='text-2xl'>{job.company.name}</h2>
+                <h2 className='text-2xl'>{job?.company?.name}</h2>
 
-                <p className='my-2'>{job.company.description}</p>
+                <p className='my-2'>{job?.company?.description}</p>
 
                 <hr className='my-4' />
 
                 <h3 className='text-l'>Contact Email:</h3>
 
                 <p className='my-2 bg-blue-100 p-2 font-bold'>
-                  {job.company.contactEmail}
+                  {job?.company?.contactEmail}
                 </p>
 
                 <h3 className='text-l'>Contact Phone:</h3>
 
                 <p className='my-2 bg-blue-100 p-2 font-bold'>
                   {' '}
-                  {job.company.contactPhone}
+                  {job?.company?.contactPhone}
                 </p>
               </div>
 
               <div className='bg-white p-6 rounded-lg shadow-md mt-6'>
                 <h3 className='text-xl font-bold mb-6'>Manage Job</h3>
                 <Link
-                  to={`/edit-job/${job.id}`}
+                  to={`/edit-job/${job?._id}`}
                   className='bg-blue-600 hover:bg-blue-500 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
                 >
                   Edit Job
                 </Link>
                 <button
-                  onClick={() => onDeleteClick(job.id)}
+                  onClick={() => onDeleteClick(job?._id)}
                   className='bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
                 >
                   Delete Job
@@ -112,7 +112,7 @@ const JobPage = ({ deleteJob }) => {
 };
 
 const jobLoader = async ({ params }) => {
-  const res = await fetch(`/api/jobs/${params.id}`);
+  const res = await fetch(`/server/jobs/${params?.id}`);
   const data = await res.json();
   return data;
 };
